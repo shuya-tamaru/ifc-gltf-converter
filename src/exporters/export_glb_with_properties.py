@@ -1,6 +1,3 @@
-import multiprocessing
-import sys
-from collections import Counter
 from typing import Any, Dict, List
 
 import ifcopenshell
@@ -8,8 +5,7 @@ import ifcopenshell.geom
 import ifcopenshell.util.shape
 import numpy as np
 
-from core.converter import (create_iterator, get_element_details,
-                            get_geometry_settings, load_ifc_model)
+from core.converter import get_geometry_settings, load_ifc_model
 
 
 def export_glb_with_properties(ifc_path):
@@ -33,17 +29,7 @@ def export_glb_with_properties(ifc_path):
             continue
 
 
-        try:
-            # representations = element.Representation.Representations
-            # valid_representations = [
-            #     rep for rep in representations 
-            #     if rep.RepresentationType in ['SweptSolid', 'Brep', 'MappedRepresentation', 'Tessellation']
-            # ]
-
-            # if not valid_representations:
-            #     print(f"スキップ: {element.Name} (有効な形状表現なし)")
-            #     continue
-            
+        try:            
             shape = ifcopenshell.geom.create_shape(geo_settings, element)
 
             if(len(shape.geometry.materials) > 1):
