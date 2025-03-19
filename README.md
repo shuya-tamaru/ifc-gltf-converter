@@ -47,6 +47,8 @@ Export to glTF format:
 python3 src/main.py building.ifc building.gltf
 ```
 
+## Advanced Features
+
 ### Draco Compression
 
 If you need to apply Draco compression to reduce file size:
