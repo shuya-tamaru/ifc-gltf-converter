@@ -38,11 +38,26 @@ python3 src/main.py building.ifc building.glb
 Export geometry only:
 
 ```bash
-python main.py building.ifc building.glb model_only
+python3 src/main.py building.ifc building.glb model_only
 ```
 
 Export to glTF format:
 
 ```bash
-python main.py building.ifc building.gltf
+python3 src/main.py building.ifc building.gltf
 ```
+
+### Draco Compression
+
+If you need to apply Draco compression to reduce file size:
+
+Export your model to glTF format:
+
+```bash
+python3 src/main.py building.ifc building.gltf
+```
+
+Use the separate gltf-pipeline tool for Draco compression. A reference implementation is available at:
+https://github.com/shuya-tamaru/gltf-draco-compression
+
+The linked repository provides code examples for applying Draco compression to your exported glTF files, which can significantly reduce file sizes while maintaining visual quality.
