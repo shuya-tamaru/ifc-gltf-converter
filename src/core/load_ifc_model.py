@@ -1,4 +1,4 @@
-from ifcopenshell import ifcopenshell
+import ifcopenshell
 
 
 def load_ifc_model(ifc_path):

@@ -38,5 +38,5 @@ def extract_color_info(style:style):
 
   except Exception as e:
     print(f"Error: {e}")
-    return [1.0, 1.0, 1.0, 1.0]()
+    return [1.0, 1.0, 1.0, 1.0]
    

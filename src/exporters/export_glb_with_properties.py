@@ -7,6 +7,7 @@ import ifcopenshell.util.shape
 from core.build_geometry_data_by_material import \
     build_geometry_data_by_material
 from core.converter import get_geometry_settings
+from core.get_element_properties import get_element_properties
 from types_def.geometry import GeometryData
 from types_def.ifc import IfcModel
 
@@ -21,6 +22,7 @@ def export_glb_with_properties(ifc_model:IfcModel):
     
     processed = 0
     objects_with_geometry:List[GeometryData] = []
+    properties = []
     for element in elements:
         if not element.Representation:
           print(f"Skip: {element.Name}")
@@ -32,6 +34,12 @@ def export_glb_with_properties(ifc_model:IfcModel):
 
         try:            
             shape = ifcopenshell.geom.create_shape(geo_settings, element)
+            product_details = get_element_properties(element)
+            detail = {
+               "id":element.id(),
+               "detail":product_details
+            }
+            properties.append(detail)
 
             if(len(shape.geometry.materials) > 1):
                for i, material in enumerate(shape.geometry.materials):                  
@@ -48,7 +56,6 @@ def export_glb_with_properties(ifc_model:IfcModel):
 
                objects_with_geometry.append(geometry_data)
 
-            # product_details = get_element_details(element)
             
             processed += 1
             if processed % 100 == 0:
@@ -60,7 +67,7 @@ def export_glb_with_properties(ifc_model:IfcModel):
 
     
     print(f"Number of objects with geometry: {len(objects_with_geometry)}")
-    return objects_with_geometry
+    return objects_with_geometry,properties
 
 
 

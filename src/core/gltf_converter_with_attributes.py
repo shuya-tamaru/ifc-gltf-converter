@@ -9,7 +9,7 @@ from core.prepare_geometry_data import prepare_geometry_data
 from types_def.geometry import GeometryData
 
 
-def gltf_converter_with_attributes(objects_with_geometry:list[GeometryData]):
+def gltf_converter_with_attributes(objects_with_geometry:list[GeometryData],properties:list):
     
     geo_data = prepare_geometry_data(objects_with_geometry)
     pointsArray = geo_data.points
@@ -24,7 +24,7 @@ def gltf_converter_with_attributes(objects_with_geometry:list[GeometryData]):
     bufferViews, accessors =create_buffer_views_and_accessors(pointsArray, facesArray)
     
     mesh_primitives = create_primitives(materialsArray, meshId_array)
-    meshes, nodes =create_mesh_and_node(mesh_primitives)
+    meshes, nodes =create_mesh_and_node(mesh_primitives,properties)
     
 
     gltf = GLTF2(
