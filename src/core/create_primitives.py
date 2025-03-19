@@ -1,7 +1,8 @@
+from ifcopenshell.ifcopenshell_wrapper import style
 from pygltflib import Attributes, Primitive
 
 
-def create_primitives(materialsArray:list, meshId_array:list):
+def create_primitives(materialsArray:list[style], meshId_array:list[int]):
     mesh_primitives = {}
     for i, (material, mesh_id) in enumerate(zip(materialsArray, meshId_array)):
         primitive = Primitive(

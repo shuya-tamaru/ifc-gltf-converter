@@ -1,22 +1,11 @@
-from dataclasses import dataclass
-from typing import Any, Dict, List
-
 import numpy as np
 from pygltflib import BLEND, OPAQUE, Material, PbrMetallicRoughness
 
+from types_def.geometry import GeometryData, PrepareGeometryData
 from utils import extract_color_info
 
 
-@dataclass
-class GeometryData:
-    points: list
-    normals: list
-    faces: list
-    user_data: list
-    materials: list
-    mesh_ids: list
-
-def prepare_geometry_data(objects_with_geometry:List[Dict[str, Any]]):
+def prepare_geometry_data(objects_with_geometry:list[GeometryData]):
     pointsArray= []
     normalsArray = []
     facesArray = []
@@ -51,5 +40,5 @@ def prepare_geometry_data(objects_with_geometry:List[Dict[str, Any]]):
             )
         materialsArray.append(material)
     
-    return GeometryData(pointsArray, normalsArray, facesArray, 
+    return PrepareGeometryData(pointsArray, normalsArray, facesArray, 
                         userDataArray, materialsArray, meshId_array)

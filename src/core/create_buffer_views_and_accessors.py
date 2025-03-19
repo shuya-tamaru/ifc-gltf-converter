@@ -2,12 +2,14 @@ import numpy as np
 from pygltflib import (ARRAY_BUFFER, ELEMENT_ARRAY_BUFFER, FLOAT, SCALAR,
                        UNSIGNED_INT, VEC3, Accessor, BufferView)
 
+from types_def.geometry import NpFloatArray32, NpUnSignedInt32Array
 
-def create_buffer_views_and_accessors(pointsArray:list, facesArray:list):
 
-    bufferViews = []
+def create_buffer_views_and_accessors(pointsArray:NpFloatArray32, facesArray:NpUnSignedInt32Array):
+
+    bufferViews:list[BufferView] = []
     byte_offset = 0
-    accessors = []
+    accessors:list[Accessor] = []
     for i, (points, faces) in enumerate(zip(pointsArray, facesArray)):
         faces_byte_length = len(faces.flatten().tobytes())
         bufferViews.append(BufferView(
@@ -45,5 +47,5 @@ def create_buffer_views_and_accessors(pointsArray:list, facesArray:list):
                 min=points.min(axis=0).tolist(),
             ),
         ])
-        
+
     return bufferViews, accessors

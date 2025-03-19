@@ -1,7 +1,9 @@
 from pygltflib import Buffer
 
+from types_def.geometry import NpFloatArray32, NpUnSignedInt32Array
 
-def build_gltf_buffer(pointsArray:list, facesArray:list):
+
+def build_gltf_buffer(pointsArray:NpFloatArray32, facesArray:NpUnSignedInt32Array):
     binary_blob = bytearray()
     for points, faces in zip(pointsArray,  facesArray):
 

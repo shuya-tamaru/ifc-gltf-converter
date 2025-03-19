@@ -1,5 +1,3 @@
-from typing import Any, Dict, List
-
 from pygltflib import GLTF2, Scene
 
 from core.build_gltf_buffer import build_gltf_buffer
@@ -8,9 +6,10 @@ from core.create_buffer_views_and_accessors import \
 from core.create_mesh_and_node import create_mesh_and_node
 from core.create_primitives import create_primitives
 from core.prepare_geometry_data import prepare_geometry_data
+from types_def.geometry import GeometryData
 
 
-def gltf_converter_with_attributes(objects_with_geometry:List[Dict[str, Any]]):
+def gltf_converter_with_attributes(objects_with_geometry:list[GeometryData]):
     
     geo_data = prepare_geometry_data(objects_with_geometry)
     pointsArray = geo_data.points
@@ -40,9 +39,10 @@ def gltf_converter_with_attributes(objects_with_geometry:List[Dict[str, Any]]):
     )
 
     gltf.set_binary_blob(bytes(binary_blob))
+    
     return gltf
 
 
 def save_glb(gltf:GLTF2, output_path):
     gltf.save(output_path)
-    print(f"GLBファイルを保存しました: {output_path}")
+    print(f"export success: {output_path}")

@@ -1,7 +1,9 @@
 import sys
 
+from ifcopenshell.ifcopenshell_wrapper import style
 
-def load_ifc():
+
+def getPaths_input_output():
   if len(sys.argv) < 3:
       print("使用方法: python main.py input_path.ifc output_path(.glb or .gltf)")
       return None, None
@@ -11,7 +13,7 @@ def load_ifc():
   
   return ifc_path, output_path
 
-def extract_color_info(style):
+def extract_color_info(style:style):
   try:
     if hasattr(style, 'diffuse'):
         diffuse = style.diffuse
@@ -35,6 +37,6 @@ def extract_color_info(style):
     return [1.0, 1.0, 1.0, 1.0]
 
   except Exception as e:
-    print(f"色情報抽出エラー: {e}")
+    print(f"Error: {e}")
     return [1.0, 1.0, 1.0, 1.0]()
    

@@ -9,17 +9,18 @@ import ifcopenshell.util.resource
 
 def load_ifc_model(ifc_path):
     try:
-        print("IFCファイルを読み込み中...")
+        print("IFC file loading...")
         ifc_model = ifcopenshell.open(ifc_path)
-        print(f"IFCファイルの読み込み完了。スキーマバージョン: {ifc_model.schema}")
+        print(f"IFC file loaded. Schema version: {ifc_model.schema}")
         return ifc_model
     except Exception as e:
-        print(f"エラー: IFCファイルの読み込みに失敗しました。{e}")
+        print(f"Error: Failed to load IFC file. {e}")
         return None
     
 def get_geometry_settings():
     geo_settings = ifcopenshell.geom.settings()
     geo_settings.set("dimensionality", ifcopenshell.ifcopenshell_wrapper.SURFACES_AND_SOLIDS)
+    geo_settings.set("unify-shapes", True)
     geo_settings.set("use-world-coords", True)
     geo_settings.set("apply-default-materials", True)
     geo_settings.set("no-normals", False)
