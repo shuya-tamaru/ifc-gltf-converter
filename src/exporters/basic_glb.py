@@ -15,6 +15,7 @@ def export_basic_glb(ifc_path, output_path):
         
         serialiser_settings = ifcopenshell.geom.serializer_settings()
         serialiser_settings.set("use-element-names", True)
+        serialiser_settings.set("y-up", True)
         serialiser = ifcopenshell.geom.serializers.gltf(output_path, geo_settings, serialiser_settings)
 
         serialiser.setFile(ifc_model)
