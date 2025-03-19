@@ -7,15 +7,20 @@ from utils import getPaths_input_output
 
 
 def main():
-    ifc_path, output_path = getPaths_input_output()
+    ifc_path, output_path, export_type = getPaths_input_output()
     
     if ifc_path is None or output_path is None:
         return
     
-    ifc_model = load_ifc_model(ifc_path)
-    objects_with_geometry,properties = export_glb_with_properties(ifc_model)
-    gltf = gltf_converter_with_attributes(objects_with_geometry,properties)
-    save_glb(gltf, output_path)
+    if(export_type == "properties"):
+        ifc_model = load_ifc_model(ifc_path)
+        objects_with_geometry,properties = export_glb_with_properties(ifc_model)
+        gltf = gltf_converter_with_attributes(objects_with_geometry,properties)
+        save_glb(gltf, output_path)
+        return
+    else:
+        export_basic_glb(ifc_path, output_path)
+        return
 
 if __name__ == "__main__":
     main()
