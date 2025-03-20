@@ -24,21 +24,23 @@ def extract_color_info(style:style):
             diffuse.g(),
             diffuse.b()
         ]
-        transparency = 1.0
+        opacity = 1.0
         if hasattr(style, 'transparency'):
             try:
                 trans_value = float(style.transparency)
                 
                 if not (trans_value != trans_value):
-                    transparency = max(0.0, min(1.0, 1.0 - trans_value))
+                    opacity = max(0.0, min(1.0, 1.0 - trans_value))
+                else:
+                    opacity = 0.0
             except (ValueError, TypeError):
-                transparency = 1.0
+                opacity = 0.0
         
-        return color_values + [transparency]
+        return color_values + [opacity]
     
-    return [1.0, 1.0, 1.0, 1.0]
+    return [1.0, 1.0, 1.0, 0.0]
 
   except Exception as e:
     print(f"Error: {e}")
-    return [1.0, 1.0, 1.0, 1.0]
+    return [1.0, 1.0, 1.0, 0.0]
    

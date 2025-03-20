@@ -14,7 +14,10 @@ def export_basic_glb(ifc_path, output_path):
         geo_settings = get_geometry_settings()
         
         serialiser_settings = ifcopenshell.geom.serializer_settings()
-        serialiser_settings.set("use-element-names", True)
+        # serialiser_settings.set("use-element-guids", True)
+        # serialiser_settings.set("use-element-names", True)
+        serialiser_settings.set("use-element-step-ids", True)
+        # serialiser_settings.set("use-element-types", True)
         serialiser_settings.set("y-up", True)
         serialiser = ifcopenshell.geom.serializers.gltf(output_path, geo_settings, serialiser_settings)
 
