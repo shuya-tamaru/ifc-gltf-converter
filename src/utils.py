@@ -5,7 +5,7 @@ from ifcopenshell.ifcopenshell_wrapper import style
 
 def getPaths_input_output():
   if len(sys.argv) < 3:
-        print("How to use: python src/main.py input_path.ifc output_path(.glb or .gltf) [export_type]")
+        print("How to use: python3 src/main.py input_path.ifc output_path(.glb or .gltf) [export_type]")
         print("export_type: 'properties'(default) or 'model_only'")
         return None, None, None
   

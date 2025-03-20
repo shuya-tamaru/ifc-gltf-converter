@@ -10,7 +10,6 @@ from core.converter import get_geometry_settings
 from core.get_element_properties import get_element_properties
 from types_def.geometry import GeometryData
 from types_def.ifc import IfcModel
-from utils import extract_color_info
 
 
 def export_glb_with_properties(ifc_model:IfcModel):
@@ -57,10 +56,6 @@ def export_glb_with_properties(ifc_model:IfcModel):
 
                objects_with_geometry.append(geometry_data)
               
-            if(element.id() == 5596521):
-               extract_color_info(shape.geometry.materials[0])
-               return
-
             processed += 1
             if processed % 100 == 0:
                 print(f"progress: {processed}/{len(elements)}")

@@ -13,9 +13,8 @@ def gltf_converter_with_attributes(objects_with_geometry:list[GeometryData],prop
     
     geo_data = prepare_geometry_data(objects_with_geometry)
     pointsArray = geo_data.points
-    normalsArray = geo_data.normals
+    # normalsArray = geo_data.normals
     facesArray = geo_data.faces
-    userDataArray = geo_data.user_data
     materialsArray = geo_data.materials
     meshId_array = geo_data.mesh_ids
 
