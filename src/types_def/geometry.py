@@ -23,3 +23,5 @@ class PrepareGeometryData:
     user_data: list[Any]
     materials: list[style]
     mesh_ids: list[int]
+    use_material_map:dict[int, str]
+    unique_materials:dict[str, int]

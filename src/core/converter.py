@@ -51,16 +51,6 @@ def get_element_details(element:ifcopenshell.sqlite_entity):
         'global_id': element.GlobalId,
         'psets': psets
     }
-    # print("---------------------------")
-    # print(f"製品の詳細: {psets_and_qtos}")
-    # print(f"製品の属性: {attributes}")
-    # print(f"製品の材料: {materials}")
-    # print(f"製品の空間コンテナ: {spatial_container}")
-    # print(f"製品の量セット: {quantity_sets}",element.Name)
-    # print("---------------------------")
-    # print(f"製品のタイプ情報: {type_info}")
-    # print("---------------------------")
-    # print(f"製品の事前定義タイプ: {predefined_type}")
-    # print("---------------------------")
+
 
     return details

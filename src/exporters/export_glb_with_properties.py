@@ -40,18 +40,19 @@ def export_glb_with_properties(ifc_model:IfcModel):
                "detail":product_details
             }
             properties.append(detail)
-
             if(len(shape.geometry.materials) > 1):
                for i, material in enumerate(shape.geometry.materials):                  
                   geometry_data:GeometryData = build_geometry_data_by_material(shape,element,material,i)
                   objects_with_geometry.append(geometry_data)
             else:
+               material = shape.geometry.materials[0]
+
                geometry_data:GeometryData = {
                   "id":element.id(),
                   "vertices": shape.geometry.verts,
                   "indices": shape.geometry.faces,
                   "normals": shape.geometry.normals,
-                  "material": shape.geometry.materials[0],
+                  "material":material,
                }
 
                objects_with_geometry.append(geometry_data)

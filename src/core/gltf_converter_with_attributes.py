@@ -17,14 +17,15 @@ def gltf_converter_with_attributes(objects_with_geometry:list[GeometryData],prop
     facesArray = geo_data.faces
     materialsArray = geo_data.materials
     meshId_array = geo_data.mesh_ids
+    use_material_map = geo_data.use_material_map
+    unique_materials = geo_data.unique_materials
 
     binary_blob, buffer = build_gltf_buffer(pointsArray, facesArray)
 
     bufferViews, accessors =create_buffer_views_and_accessors(pointsArray, facesArray)
     
-    mesh_primitives = create_primitives(materialsArray, meshId_array)
+    mesh_primitives = create_primitives( meshId_array,use_material_map,unique_materials)
     meshes, nodes =create_mesh_and_node(mesh_primitives,properties)
-    
 
     gltf = GLTF2(
         scene=0,
